@@ -283,10 +283,23 @@
     fixedContentPos: false
   });
 
+  $.fn.datepicker.dates['en'] = {
+      days: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"],
+      daysShort: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
+      daysMin: ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"],
+      months: ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"],
+      monthsShort: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+      today: "Vandaag",
+      clear: "Reset keuze",
+      format: "dd/mm/yyyy",
+      titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+      weekStart: 0
+  };
 
   $('.appointment_date').datepicker({
 	  'format': 'm/d/yyyy',
-	  'autoclose': true
+	  'autoclose': true,
+    daysOfWeekDisabled: "1,2"
 	});
 
 	$('.appointment_time').timepicker();
@@ -300,6 +313,58 @@
         $('#onsverhaal').append(data);
             }
         });
+
+  $.ajax({
+        async:false,
+        url: './evenement.txt',
+        dataType: 'text',
+        success: function(data)
+        {
+        $('#evenement').append(data);
+            }
+        });
+
+  $.ajax({
+        async:false,
+        url: './evenementtitel.txt',
+        dataType: 'text',
+        success: function(data)
+        {
+        $('#evenementtitel').append(data);
+            }
+        });
+
+
+        $('#reused_form').submit(function(e)
+            {
+              e.preventDefault();
+
+              $form = $(this);
+              //show some response on the button
+              $('button[type="submit"]', $form).each(function()
+              {
+                  $btn = $(this);
+                  $btn.prop('type','button' );
+                  $btn.prop('orig_label',$btn.text());
+                  $btn.text('Sending ...');
+              });
+
+
+                          $.ajax({
+                      type: "POST",
+                      url: 'handler.php',
+                      data: $form.serialize(),
+                      success: after_form_submitted,
+                      dataType: 'json'
+                  });
+
+            });
+
+            $(".reserveernu").on("click", function(){
+              $('html, body').animate({
+      scrollTop: $("#reserveren").offset().top
+  }, 1000);
+            })
 
 
 })(jQuery);
