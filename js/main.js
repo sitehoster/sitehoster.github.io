@@ -1,64 +1,25 @@
 $(document).ready(function() {
     "use strict";
 
-    $("#eddyschoice").on("click", function(){
-              $('html, body').animate({
-      scrollTop: $(".eddyschoicesec").offset().top
-  }, 1000);
-            })
-            $("#info").on("click", function(){
-                      $('html, body').animate({
-              scrollTop: $(".infosec").offset().top
-          }, 1000);
-                    })
-                    $("#sfeer").on("click", function(){
-                              $('html, body').animate({
-                      scrollTop: $(".sfeersec").offset().top
-                  }, 1000);
-                            })
-                            $("#home1").on("click", function(){
-                                      $('html, body').animate({
-                              scrollTop: $(".header-top").offset().top
-                          }, 1000);
-                                    })
-                                    $("#leesverder").on("click", function(){
-                                              $('html, body').animate({
-                                      scrollTop: $(".eddyschoicesec").offset().top
-                                  }, 1000);
-                                            })
-
-
-
     var window_width = $(window).width(),
         window_height = window.innerHeight,
         header_height = $(".default-header").height(),
         header_height_static = $(".site-header.static").outerHeight(),
         fitscreen = window_height - header_height;
 
-    $(".fullscreen").css("height", window_height)
+    // $(".fullscreen").css("height", window_height)
     $(".fitscreen").css("height", fitscreen);
 
-
-    // ------- Datepicker  js --------//
-
-      $( function() {
-        $( ".date-picker" ).datepicker();
-      } );
-
-
-    //------- Niceselect  js --------//
+    //------- Niceselect  js --------//  
 
     if (document.getElementById("default-select")) {
-        $('select').niceSelect();
-    };
-    if (document.getElementById("default-select2")) {
         $('select').niceSelect();
     };
     if (document.getElementById("service-select")) {
         $('select').niceSelect();
     };
 
-    //------- Lightbox  js --------//
+    //------- Lightbox  js --------//  
 
     $('.img-gal').magnificPopup({
         type: 'image',
@@ -75,7 +36,7 @@ $(document).ready(function() {
         fixedContentPos: false
     });
 
-    //------- Superfish nav menu  js --------//
+    //------- Superfist nav menu  js --------//  
 
     $('.nav-menu').superfish({
         animation: {
@@ -84,44 +45,7 @@ $(document).ready(function() {
         speed: 400
     });
 
-
-    //------- Filter  js --------//
-
-      $('.filters li').click(function(){
-        $('.filters li').removeClass('active');
-        $(this).addClass('active');
-
-        var data = $(this).attr('data-filter');
-        $grid.isotope({
-          filter: data
-        })
-      });
-
-
-      if(document.getElementById("menu") || document.getElementById("gallery")){
-            var $grid = $(".grid").isotope({
-              itemSelector: ".all",
-              percentPosition: true,
-              masonry: {
-                columnWidth: ".all"
-              }
-            })
-      };
-
-    //------- Owl Carusel  js --------//
-
-    $('.active-review-carusel').owlCarousel({
-        items:1,
-        loop:true,
-        autoplay:true,
-        autoplayHoverPause: true,
-        smartSpeed:500,
-        margin:30,
-        dots: true
-    });
-
-
-    //------- Mobile Nav  js --------//
+    //------- Mobile Nav  js --------//  
 
     if ($('#nav-menu-container').length) {
         var $mobile_nav = $('#nav-menu-container').clone().prop({
@@ -131,9 +55,9 @@ $(document).ready(function() {
             'class': '',
             'id': ''
         });
-        $('body .main-menu').append($mobile_nav);
-        $('body .main-menu').prepend('<span class="menu-title">Menu</span> <button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>');
-        $('body .main-menu').append('<div id="mobile-body-overly"></div>');
+        $('body').append($mobile_nav);
+        $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>');
+        $('body').append('<div id="mobile-body-overly"></div>');
         $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
 
         $(document).on('click', '.menu-has-children i', function(e) {
@@ -148,7 +72,7 @@ $(document).ready(function() {
             $('#mobile-body-overly').toggle();
         });
 
-            $(document).on('click', function(e) {
+        $(document).click(function(e) {
             var container = $("#mobile-nav, #mobile-nav-toggle");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {
@@ -162,7 +86,7 @@ $(document).ready(function() {
         $("#mobile-nav, #mobile-nav-toggle").hide();
     }
 
-    //------- Smooth Scroll  js --------//
+    //------- Smooth Scroll  js --------//  
 
     $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -223,31 +147,7 @@ $(document).ready(function() {
 
     });
 
-
-    jQuery(document).ready(function($) {
-        // Get current path and find target link
-        var path = window.location.pathname.split("/").pop();
-
-        // Account for home page with empty path
-        if (path == '') {
-            path = 'index.html';
-        }
-
-        var target = $('nav a[href="' + path + '"]');
-        // Add active class to target link
-        target.addClass('menu-active');
-    });
-
-    $(document).ready(function() {
-        if ($('.menu-has-children ul>li a').hasClass('menu-active')) {
-            $('.menu-active').closest("ul").parentsUntil("a").addClass('parent-active');
-        }
-    });
-
-
-
-
-    //------- Header Scroll Class  js --------//
+    //------- Header Scroll Class  js --------//  
 
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
@@ -257,7 +157,97 @@ $(document).ready(function() {
         }
     });
 
-    //------- Google Map  js --------//
+    //------- Owl Carusel  js --------//
+
+    $('.active-testimonial-carusel').owlCarousel({
+        items: 2,
+        loop: true,
+        margin: 30,
+        autoplayHoverPause: true,
+        smartSpeed:500,
+        dots: false,
+        // autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            }
+        }
+    });
+
+
+    $('.active-blog-carusel').owlCarousel({
+        items: 3,
+        loop: true,
+        margin: 30,
+        dots: true,
+        autoplayHoverPause: true, 
+        smartSpeed:500,               
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            },
+            961: {
+                items: 3,
+            }
+        }
+    });
+
+    //------- Light Gallery js --------//
+    if (document.getElementById('lightgallery')) {
+        $('#lightgallery').lightGallery({
+            selector: '.all'
+        });
+    }
+
+    //------- Timer Countdown  js --------//  
+
+    if (document.getElementById("count")) {
+
+        var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="count"
+            document.getElementById("count").innerHTML =
+
+                "<div class='col'><span>" + days + "</span><br> Days " + "</div>" + "<div class='col'><span>" + hours + "</span><br> Hours " + "</div>" + "<div class='col'><span>" + minutes + "</span><br> Minutes " + "</div>" + "<div class='col'><span>" + seconds + "</span><br> Seconds </div>";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("count").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+    }
+
+    //------- Google Map  js --------//  
 
     if (document.getElementById("map")) {
         google.maps.event.addDomListener(window, 'load', init);
@@ -399,4 +389,68 @@ $(document).ready(function() {
         $('#mc_embed_signup').find('form').ajaxChimp();
     });
 
+    /*----------------------------------------------------*/
+    /*  Isotope Fillter js
+    /*----------------------------------------------------*/
+	$(window).load(function () {
+        $('.project-filter ul li').click(function () {
+            $('.project-filter ul li').removeClass('active');
+            $(this).addClass('active');
+            var filterData = $(this).attr('data-filter');
+            $projectGrid.isotope({
+                filter: filterData
+            })
+        });
+
+
+        var $projectGrid = $(".projects_inner").isotope({
+            itemSelector: ".all",
+            percentPosition: true,
+        });
+    });
+
+    //------- Progress Bar --------//
+    $.fn.bekeyProgressbar = function (options) {
+
+        var $this = $(this);
+
+        var $progressBar = $this;
+        var $progressCount = $progressBar.find('.progressBar-percentage-count');
+        var $circle = $progressBar.find('.progressBar-circle');
+        var percentageProgress = $progressBar.attr('data-progress');
+        var percentageRemaining = (100 - percentageProgress);
+        var percentageText = $progressCount.parent().attr('data-progress');
+
+        //Calcule la circonférence du cercle
+        var radius = $circle.attr('r');
+        var diameter = radius * 2;
+        var circumference = Math.round(Math.PI * diameter);
+
+        //Calcule le pourcentage d'avancement
+        var percentage = circumference * percentageRemaining / 100;
+
+        $circle.css({
+            'stroke-dasharray': circumference,
+            'stroke-dashoffset': percentage
+        })
+
+    };
+
+    
+    $('.progressBar--animateNone').bekeyProgressbar({
+        animate: false,
+        animateText: false
+    });
+
+    $('.progressBar--animateCircle').bekeyProgressbar({
+        animate: true,
+        animateText: false
+    });
+
+    $('.progressBar--animateText').bekeyProgressbar({
+        animate: false,
+        animateText: true
+    });
+
+    $('.progressBar--animateAll').bekeyProgressbar();
 });

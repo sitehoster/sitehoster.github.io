@@ -2,7 +2,6 @@
 /*  Basic Style 
 /* =================================== */
 
-
 ::-moz-selection { /* Code for Firefox */
     background-color: $primary-color;
     color: $white;
@@ -37,7 +36,7 @@ body {
     color: $text-color;
     font-family: $primary-font;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 200;
     line-height: 1.625em;
     position: relative;
     // -webkit-font-smoothing: antialiased;
@@ -96,19 +95,17 @@ a, a:focus, a:hover {
 h1, h2, h3,
 h4, h5, h6 {
     font-family: $primary-font;
-    color: $title-color;
+    color: $black;
     line-height: 1.2em !important;
-    margin-bottom: 0;
-    margin-top: 0;
-    font-weight: 600;
+    margin: 0;
+    font-weight: 200;
 }
 .h1, .h2, .h3,
 .h4, .h5, .h6 {
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 0;
     font-family: $primary-font;
     font-weight: 600;
-    color: $title-color;
+    color: $black;
 }
 
 h1, .h1 { font-size: 36px;}
@@ -116,7 +113,7 @@ h2, .h2 { font-size: 30px;}
 h3, .h3 { font-size: 24px;}
 h4, .h4 { font-size: 18px;}
 h5, .h5 { font-size: 16px;}
-h6, .h6 { font-size: 14px; color: $title-color;}
+h6, .h6 { font-size: 14px;}
 
 td, th {
     border-radius: 0px;
@@ -138,6 +135,12 @@ td, th {
     }
     &::after {
         clear: both;
+    }
+}
+
+input {
+    &:focus {
+        outline: none;
     }
 }
 
@@ -319,5 +322,29 @@ td, th {
     &.no-margin {
         margin-left: 0;
         margin-right: 0;
+    }
+}
+
+.main-title {
+    margin-bottom: 80px;
+    @media(max-width:991px) {
+        margin-bottom: 40px;
+    }
+    h1 {
+        margin-bottom: 20px;
+        font-weight: 100;
+        line-height: 29px!important;
+        @media(max-width:480px) {
+            font-size: 30px;
+        }
+    }
+    p {
+        max-width: 630px;
+        margin: 0 auto;
+        font-size: 16px;
+        line-height: 26px;
+        @media(max-width:991px) {
+            margin: 0;
+        }
     }
 }
